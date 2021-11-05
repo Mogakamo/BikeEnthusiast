@@ -11,13 +11,17 @@ export default {
   name: "Home",
   data() {
     return {
-      info: null,
+      result: "",
+      responseAvailable: false,
+      apiKey: "<YOUR_RAPIDAPI_KEY>",
     };
   },
   mounted() {
     axios
-      .get("https://api.coindesk.com/v1/bpi/currentprice.json")
-      .then((response) => (this.info = response));
+      .get(
+        "https://motorcycle-specs-database.p.rapidapi.com/article/2020/Yamaha/YZF%20R15"
+      )
+      .then((response) => (this.info = response.articleCompleteInfo));
   },
   components: {},
 };
