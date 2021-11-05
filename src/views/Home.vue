@@ -3,6 +3,8 @@
     <button type="button" id="get-joke" @click="fetchAPIData">
       Get a Bike!!
     </button>
+
+    {{ result }}
   </div>
 </template>
 
@@ -21,10 +23,10 @@ export default {
     };
   },
   methods: {
-    fetchApiData() {
+    async fetchApiData() {
       this.responseAvailable = false;
 
-      fetch("https://motorcycle-specs-database.p.rapidapi.com/make", {
+      await fetch("https://motorcycle-specs-database.p.rapidapi.com/make", {
         method: "GET",
         headers: {
           "x-rapidapi-host": "motorcycle-specs-database.p.rapidapi.com",
