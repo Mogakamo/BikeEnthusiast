@@ -1,5 +1,5 @@
 <template>
-  <div class="home">{{ responseAvailable }}</div>
+  <div class="home">{{ res }}</div>
 </template>
 
 <script>
@@ -17,18 +17,18 @@ export default {
     };
   },
   mounted() {
-    fetch(
-      "https://motorcycle-specs-database.p.rapidapi.com/article/2020/Yamaha/YZF%20R15",
-      {
-        method: "GET",
-        headers: {
-          "x-rapidapi-host": "motorcycle-specs-database.p.rapidapi.com",
-          "x-rapidapi-key":
-            "cb50711466msh8ab234bdc5f2765p1e59a1jsnd0b9f945cd64",
-        },
-      }
-    )
-      .then((response) => (this.responseAvailable = response))
+    this.responseAvailable = false;
+
+    fetch("https://motorcycle-specs-database.p.rapidapi.com/make", {
+      method: "GET",
+      headers: {
+        "x-rapidapi-host": "motorcycle-specs-database.p.rapidapi.com",
+        "x-rapidapi-key": "cb50711466msh8ab234bdc5f2765p1e59a1jsnd0b9f945cd64",
+      },
+    })
+      .then((response) => {
+        console.log(response);
+      })
       .catch((err) => {
         console.error(err);
       });
