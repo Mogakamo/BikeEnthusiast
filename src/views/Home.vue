@@ -35,6 +35,10 @@ export default {
           );
         }
       })
+      .then((response) => {
+        this.result = response.body;
+        this.responseAvailable = true;
+      })
       .catch((err) => {
         console.error(err);
       });
