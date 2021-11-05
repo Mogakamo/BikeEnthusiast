@@ -1,5 +1,9 @@
 <template>
-  <div class="home">{{ res }}</div>
+  <div class="home">
+    <button type="button" id="get-joke" @click="fetchAPIData">
+      Get a Bike!!
+    </button>
+  </div>
 </template>
 
 <script>
@@ -16,37 +20,39 @@ export default {
       apiKey: "cb50711466msh8ab234bdc5f2765p1e59a1jsnd0b9f945cd64",
     };
   },
-  mounted() {
-    this.responseAvailable = false;
+  methods: {
+    fetchApiData() {
+      this.responseAvailable = false;
 
-    fetch("https://motorcycle-specs-database.p.rapidapi.com/make", {
-      method: "GET",
-      headers: {
-        "x-rapidapi-host": "motorcycle-specs-database.p.rapidapi.com",
-        "x-rapidapi-key": this.apiKey,
-      },
-    })
-      .then((response) => {
-        if (response.ok) {
-          return response.json();
-        } else {
-          alert(
-            "Server returned " + response.status + " : " + response.statusText
-          );
-        }
+      fetch("https://motorcycle-specs-database.p.rapidapi.com/make", {
+        method: "GET",
+        headers: {
+          "x-rapidapi-host": "motorcycle-specs-database.p.rapidapi.com",
+          "x-rapidapi-key": this.apiKey,
+        },
       })
-      .then((response) => {
-        this.result = response.body;
-        this.responseAvailable = true;
-      })
-      .catch((err) => {
-        console.error(err);
-      });
-    // axios
-    //   .get(
-    //     "https://motorcycle-specs-database.p.rapidapi.com/article/2020/Yamaha/YZF%20R15"
-    //   )
-    //   .then((response) => (this.info = response.articleCompleteInfo));
+        .then((response) => {
+          if (response.ok) {
+            return response.json();
+          } else {
+            alert(
+              "Server returned " + response.status + " : " + response.statusText
+            );
+          }
+        })
+        .then((response) => {
+          this.result = response.body;
+          this.responseAvailable = true;
+        })
+        .catch((err) => {
+          console.error(err);
+        });
+      // axios
+      //   .get(
+      //     "https://motorcycle-specs-database.p.rapidapi.com/article/2020/Yamaha/YZF%20R15"
+      //   )
+      //   .then((response) => (this.info = response.articleCompleteInfo));
+    },
   },
   components: {},
 };
