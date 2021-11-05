@@ -23,11 +23,17 @@ export default {
       method: "GET",
       headers: {
         "x-rapidapi-host": "motorcycle-specs-database.p.rapidapi.com",
-        "x-rapidapi-key": "cb50711466msh8ab234bdc5f2765p1e59a1jsnd0b9f945cd64",
+        "x-rapidapi-key": this.apiKey,
       },
     })
       .then((response) => {
-        console.log(response);
+        if (response.ok) {
+          return response.json();
+        } else {
+          alert(
+            "Server returned " + response.status + " : " + response.statusText
+          );
+        }
       })
       .catch((err) => {
         console.error(err);
